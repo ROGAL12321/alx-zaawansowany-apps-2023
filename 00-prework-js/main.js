@@ -25,5 +25,6 @@ products.forEach(product => {
   sum = sum + product.price;
 })
 
+
 console.log(`Suma to ${sum}`);
 console.log(`Srednia cena produktu to ${sum/products.length}`);
