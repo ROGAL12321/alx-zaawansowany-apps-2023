@@ -22,12 +22,27 @@
   </form>
 
   <table id="orderTable">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Price</th>
-    </tr>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+
+    <tbody id="orderTableBody"></tbody>
   </table>
+
+  <button id="removeOrdersButton">Remove orders</button>
+
+  <div>
+    <h2> Order Summary </h2>
+
+    <p>Sum: <span id="orderSum">0</span></p>
+    <p>Average Price: <span id="orderAverage">0</span></p>
+
+    <button id="calculateButton">Calculate</button>
+  </div>
 
   <script src="./js/main.js"></script>
 </body>
