@@ -1,15 +1,16 @@
-export const loginUser = (email, password) => {
-  let valid = false;
+export const loginUser = (emailFromForm, passwordFromForm) => {
+  return fetch('http://localhost:8000/users')
+    .then(res => res.json())
+    .then(users => {
+      const user = users.find(user => {
+        return user.email === emailFromForm
+          && user.password === passwordFromForm
+      })
+      // uzywamy throw new Error jak chcemy zaprzestac wykonywanie Promisow
+      if(!user) throw new Error("Couldn't find a user")
 
-  if(email === 'abc@wp.pl' && password === '1234') {
-    valid = true;
-  }
-
-  if(valid) {
-    localStorage.setItem('autheticatedUser', email)
-  }
-
-  return valid;
+      localStorage.setItem('autheticatedUser', user.email)
+    })
 }
 
 export const getUser = () => {

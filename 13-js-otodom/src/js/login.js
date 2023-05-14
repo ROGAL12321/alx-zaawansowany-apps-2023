@@ -10,11 +10,10 @@ const handleSubmit = (event) => {
     password: loginForm.elements.password.value
   }
 
-  const isValid = loginUser(user.email, user.password)
-
-  if(isValid) {
-    window.location.href = '/index.html'
-  }
+  loginUser(user.email, user.password)
+    .then(() => {
+      window.location.href = '/index.html'
+    })
 }
 
 
