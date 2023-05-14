@@ -1,5 +1,8 @@
 import { getApartment } from "./shared/apartments";
 import getIdFromSearchParams from "./shared/helpers"
+import { getUser } from "./shared/user";
+
+const user = getUser();
 
 const apartmentInfo = document.querySelector('#apartmentInfo');
 
