@@ -26,5 +26,56 @@
   6*. Pod selectem dodaj inny select, za pomoca ktorego bedziesz mogl sortowac polaczenia po dacie
 
  -->
+
+<form id="searchForm">
+  <label>
+    Search
+    <input type="text" name="search">
+  </label>
+  <button type="submit">Wyszukaj</button>
+</form>
+
+<hr>
+
+<form id="addTrainForm">
+  <div>
+    <label>
+      from
+      <input type="text" name="from">
+    </label>
+  </div>
+  <div>
+    <label>
+      to
+      <input type="text" name="to">
+    </label>
+  </div>
+  <div>
+    <label>
+      name
+      <input type="text" name="name">
+    </label>
+  </div>
+  <div>
+    <label>
+      date
+      <input type="text" name="date">
+    </label>
+  </div>
+  <div>
+    <label>
+      time
+      <input type="text" name="time">
+    </label>
+  </div>
+
+  <button type="submit">Wyslij</button>
+</form>
+
+<hr>
+
+ <ul id="trainList"></ul>
+
+ <script src="./js/main.js"></script>
 </body>
 </html>

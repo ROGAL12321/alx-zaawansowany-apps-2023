@@ -1,0 +1,68 @@
+{
+  "trains": [
+    {
+      "id": 1,
+      "from": "Warsaw",
+      "to": "Szczecin",
+      "name": "Sniezka",
+      "date": "13.05.2023",
+      "time": "14:41"
+    },
+    {
+      "from": "Warsaw",
+      "to": "Wrocław",
+      "name": "Gustaw",
+      "date": "13.05.2023",
+      "time": "15:55",
+      "id": 2
+    },
+    {
+      "from": "Wrocław",
+      "to": "Szczecin",
+      "name": "Snieżka",
+      "date": "14.06.2023",
+      "time": "16:00",
+      "id": 3
+    },
+    {
+      "from": "Grudziądz",
+      "to": "Wrocła",
+      "name": "Gustaw",
+      "date": "12:14",
+      "time": "16:40",
+      "id": 4
+    },
+    {
+      "from": "Pcim Dolny",
+      "to": "Kołobrzeg",
+      "name": "chybadziala",
+      "date": "13.05.2023",
+      "time": "16:00",
+      "id": 5
+    },
+    {
+      "from": "SDoasa",
+      "to": "dsaojdas",
+      "name": "jodisado",
+      "date": "dasjoi",
+      "time": "odsiaj",
+      "id": 6
+    },
+    {
+      "from": "dsa",
+      "to": "dsa",
+      "name": "231",
+      "date": "231",
+      "time": "132231",
+      "id": 7
+    },
+    {
+      "from": "dsa",
+      "to": "dsa",
+      "name": "dsa",
+      "date": "23",
+      "time": "32131",
+      "id": 8
+    }
+  ]
+}
