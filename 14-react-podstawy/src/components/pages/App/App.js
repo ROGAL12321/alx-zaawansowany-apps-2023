@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
+import { getTodos, addTodo, removeTodo } from '../../../services/todos';
+
 import './App.css';
+import TodoList from '../../sections/TodoList/TodoList';
+import TodoForm from '../../sections/TodoForm/TodoForm';
 
 // const Header = () => {
 //   return (
@@ -10,23 +14,6 @@ import './App.css';
 //     </header>
 //   )
 // }
-
-// // Stworz komponent List i komponent Footer.
-
-// // Komponent Footer ma wyswietlac Hello + Twoje imie. Twoje imie zdefiniuj jako zmienna.
-
-// // Komponent List ma wyswietlac elementy listy z tablicy obiektow
-
-// const todos = [
-//   {
-//     id: 1,
-//     name: "Jest fajnie"
-//   },
-//   {
-//     id: 2,
-//     name: "Kurs ALX jest spoko"
-//   }
-// ]
 
 // const name = 'Damian';
 
@@ -59,11 +46,7 @@ function App() {
 
   // w useEffect robimy zapytania do localStorage lub bazy danych
   useEffect(() => {
-    // const todosFromLS = JSON.parse(localStorage.getItem('todos')) ?? [];
-    // setTodos(todosFromLS)
-
-    fetch('http://localhost:8000/todos')
-      .then(res => res.json())
+    getTodos()
       .then(data => {
         setTodos(data);
       })
@@ -82,16 +65,7 @@ function App() {
     const newTodos = [...todos, newTodo]
 
     setTodos(newTodos);
-
-    fetch('http://localhost:8000/todos', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newTodo)
-    })
-
-    // localStorage.setItem('todos', JSON.stringify(newTodos));
+    addTodo(newTodo)
 
     setInputValue('');
   }
@@ -106,47 +80,30 @@ function App() {
   const handleRemove = (id) => {
     const filteredTasks = todos.filter(todo => todo.id !== id);
 
+    removeTodo(id);
     setTodos(filteredTasks);
-    // localStorage.setItem('todos', JSON.stringify(filteredTasks))
-
-    fetch(`http://localhost:8000/todos/${id}`, {
-      method: 'DELETE'
-    })
   }
 
   return (
     <div className="App">
       <h1>Welcome from App</h1>
 
-      <form onSubmit={handleSubmit}>
-        <label>
-          Task Name
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleTaskNameChange}
-          />
-        </label>
-        <button type="submit">Send</button>
-      </form>
+      <TodoForm
+        handleSubmit={handleSubmit}
+        inputValue={inputValue}
+        handleTaskNameChange={handleTaskNameChange}
+      />
 
-      <ul>
-        {todos.map(todo => {
-          return (
-            <li key={todo.id}>
-              {todo.name}
-              <button onClick={() => handleRemove(todo.id)}>X</button>
-            </li>
-          )
-        })}
-      </ul>
-
-      {/* <Header></Header>
-      <List />
-      <Footer/> */}
+      <TodoList
+        todos={todos}
+        handleRemove={handleRemove}
+      />
     </div>
   );
 }
 
 
 export default App;
+
+
+// Stworz 2 atomowe komponenty: Header i Input. Zastap nimi wszystkie naglowki i inputy w aplikacji. Ostyluj je.

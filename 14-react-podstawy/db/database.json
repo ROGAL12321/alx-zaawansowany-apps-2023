@@ -1,4 +1,20 @@
 {
-  "messages": [],
-  "todos": []
+  "messages": [
+    {
+      "id": "ea55717c-fab6-4475-9270-a01fb2c5cfaf",
+      "author": "Marek",
+      "message": "Super dzien"
+    },
+    {
+      "id": "a06b53e1-3b5d-4169-8131-a655ad858eb8",
+      "author": "Olivier",
+      "message": "jest fajnie123"
+    }
+  ],
+  "todos": [
+    {
+      "id": "2ccc93fc-4985-4a35-8ccb-a1c46fda2df2",
+      "name": "Wynieść Śmieci"
+    }
+  ]
 }
