@@ -1,16 +1,15 @@
 import Button from "../../atoms/Button/Button";
+import InputField from "../../atoms/InputField/InputField";
 
 const TodoForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
-      <label>
-        Task Name
-        <input
-          type="text"
-          value={props.inputValue}
-          onChange={props.handleTaskNameChange}
-        />
-      </label>
+      <InputField
+        title="Task Name"
+        type="text"
+        value={props.inputValue}
+        onChange={props.handleTaskNameChange}
+      />
       <Button type="submit" text="Send"/>
     </form>
   )

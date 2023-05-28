@@ -6,6 +6,7 @@ import { getTodos, addTodo, removeTodo } from '../../../services/todos';
 import './App.css';
 import TodoList from '../../sections/TodoList/TodoList';
 import TodoForm from '../../sections/TodoForm/TodoForm';
+import Title from '../../atoms/Title/Title';
 
 // const Header = () => {
 //   return (
@@ -86,7 +87,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Welcome from App</h1>
+      <Title text="Welcome from App" />
 
       <TodoForm
         handleSubmit={handleSubmit}
