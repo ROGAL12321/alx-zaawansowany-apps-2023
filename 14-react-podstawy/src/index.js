@@ -115,3 +115,12 @@ root.render(
 //   </React.StrictMode>
 // );
 
+
+
+
+// Do obecnej aplikacji doloz walidacje formularza.
+
+// Zadne pole formularza nie moze byc puste.
+
+// Podstawowe: Wyswietl blad jako alert
+// Dla PRO: Wyswietl blad jako czerwony tekst pod inputem
