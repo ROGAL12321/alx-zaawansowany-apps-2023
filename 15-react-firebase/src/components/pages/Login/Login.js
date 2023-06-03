@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../atoms/Button/Button';
+import Title from '../../atoms/Title/Title';
+import InputField from '../../sections/InputField/InputField';
 import styles from './Login.module.css';
 
 const Login = () => {
@@ -51,36 +54,24 @@ const Login = () => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.container}>
-      <h1>Login Form</h1>
-      <div>
-        <label>
-          Email
-          <input
-            type="text"
-            value={emailValue}
-            onChange={handleEmailChange}
-          />
-        </label>
-        {
-          isEmailValid ? null : <p>Pole email nie moze byc puste</p>
-        }
-      </div>
-      <div>
-        <label>
-          Hasło
-          <input
-            type="password"
-            value={passwordValue}
-            onChange={handlePasswordChange}
-          />
-        </label>
-        {
-          isPasswordValid ? null : <p>Pole hasło musi mieć minimum 6 znaków</p>
-        }
-      </div>
-      <button type="submit">
-        Zaloguj
-      </button>
+      <Title text="Login"/>
+      <InputField
+        type="text"
+        label="Email"
+        value={emailValue}
+        handleChange={handleEmailChange}
+        isError={!isEmailValid}
+        errorMessage="Pole email nie moze byc puste"
+      />
+      <InputField
+        label="Hasło"
+        type="password"
+        value={passwordValue}
+        handleChange={handlePasswordChange}
+        isError={!isPasswordValid}
+        errorMessage="Pole hasło musi mieć minimum 6 znaków"
+      />
+      <Button type="submit" text="Zaloguj"/>
     </form>
   )
 }

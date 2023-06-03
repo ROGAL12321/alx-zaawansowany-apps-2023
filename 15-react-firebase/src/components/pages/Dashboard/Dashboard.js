@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { getMessages, saveMessage } from '../../../services/firebase'
+import Title from '../../atoms/Title/Title';
+import MessageForm from '../../sections/MessageForm/MessageForm';
+import MessageList from '../../sections/MessageList/MessageList';
 import styles from './Dashboard.module.css';
 
 // Rozbij aplikacje na komponenty:
@@ -10,8 +13,6 @@ import styles from './Dashboard.module.css';
 // 4. InputField (input + label + errorMessage)
 // 5. Button
 // 6. Title
-
-// Przerwa do 15:28
 
 const Dashboard = () => {
   const [messages, setMessages] = useState([]);
@@ -61,46 +62,16 @@ const Dashboard = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Dashboard</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Author
-            <input
-              type="text"
-              value={authorValue}
-              onChange={handleAuthorChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Message
-            <input
-              type="text"
-              value={messageValue}
-              onChange={handleMessageChange}
-            />
-          </label>
-          {isMessageError
-            ? <p>Pole message musi miec minimum 4 znaki</p>
-            : null
-          }
-        </div>
-        <button type="submit">Send</button>
-      </form>
-      <ul>
-        {
-          messages.map((message, index) => {
-            return (
-              <li key={index}>
-                <strong>{message.author}</strong> wrote:
-                <p>{message.message}</p>
-              </li>
-            )
-          })
-        }
-      </ul>
+      <Title text="Dashboard" />
+      <MessageForm
+        handleSubmit={handleSubmit}
+        authorValue={authorValue}
+        handleAuthorChange={handleAuthorChange}
+        messageValue={messageValue}
+        handleMessageChange={handleMessageChange}
+        isMessageError={isMessageError}
+      />
+      <MessageList messages={messages} />
     </div>
   )
 }
