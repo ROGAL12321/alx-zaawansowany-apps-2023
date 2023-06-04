@@ -17,7 +17,6 @@ import styles from './Header.module.css'
 const Header = () => {
   const navigate = useNavigate();
   const state = useContext(GlobalContext)
-  console.log(state.user);
 
   const handleLogout = () => {
     logout()
@@ -31,18 +30,29 @@ const Header = () => {
       Messages App
       <nav>
         <ul>
-          <li>
-            <Link to="/">Login</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
-          <li>
+          {
+            !state.user && <li>
+              <Link to="/">Login</Link>
+            </li>
+          }
+          {
+            state.user && <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+          }
+          {
+            !state.user && <li>
+              <Link to="/register">Register</Link>
+            </li>
+          }
+          {
+            state.user && <li>
+              <Link to="/account">My profile</Link>
+            </li>
+          }
+          {state.user && <li>
             <Button text="Wyloguj" onClick={handleLogout}/>
-          </li>
+          </li>}
         </ul>
       </nav>
     </header>

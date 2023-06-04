@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import Login from './components/pages/Login/Login';
 import Dashboard from './components/pages/Dashboard/Dashboard';
+import Account from './components/pages/Account/Account';
 
 import GlobalProvider from './contexts/global';
 
@@ -35,6 +36,10 @@ const config = createBrowserRouter([
   {
     path: '/register',
     element: <Register />
+  },
+  {
+    path: '/account',
+    element: <Account />
   }
 ])
 

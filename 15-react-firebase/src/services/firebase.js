@@ -5,8 +5,10 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  signOut
+  signOut,
+  updateProfile as updateProfileFromFB
 } from "firebase/auth";
+import { getStorage, uploadBytes, ref as imageRef, getDownloadURL } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -23,6 +25,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
+const storage = getStorage(app);
 
 export const getMessages = (fn) => {
   const messagesRef = ref(database, 'messages');
@@ -32,7 +35,7 @@ export const getMessages = (fn) => {
     // wywolujemy funkcje callback z danymi z bazy
     // * ten patern uzywany jest wtedy, kiedy funkcja jest niepromisowa
 
-    fn(Object.values(data));
+    fn(data ? Object.values(data) : []);
   });
 }
 
@@ -58,4 +61,20 @@ export const getUser = (fn) => {
 
 export const logout = () => {
   return signOut(auth);
+}
+
+export const updateProfile = (file, fileName, displayName) => {
+  const storageRef = imageRef(storage, `avatars/${fileName}`);
+
+  return uploadBytes(storageRef, file)
+    .then(() => {
+      return getDownloadURL(imageRef(storage, `avatars/${fileName}`))
+    })
+    .then(url => {
+      return updateProfileFromFB(auth.currentUser, {
+        displayName: displayName,
+        photoURL: url
+      })
+    })
+    .catch((error) => console.log(error));
 }

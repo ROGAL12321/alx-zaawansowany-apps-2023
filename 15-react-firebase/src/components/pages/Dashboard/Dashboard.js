@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { GlobalContext } from '../../../contexts/global';
 import { getMessages, saveMessage } from '../../../services/firebase'
 import Title from '../../atoms/Title/Title';
 import MessageForm from '../../sections/MessageForm/MessageForm';
@@ -17,9 +18,9 @@ import styles from './Dashboard.module.css';
 
 const Dashboard = () => {
   const [messages, setMessages] = useState([]);
-  const [authorValue, setAuthorValue] = useState('');
   const [messageValue, setMessageValue] = useState('');
   const [isMessageError, setIsMessageError] = useState(false);
+  const state = useContext(GlobalContext)
 
   useEffect(() => {
     // funkcja tzw. callback
@@ -29,10 +30,6 @@ const Dashboard = () => {
   // handleData wywolywana jest za kazdym razem, jak sa zmieniane dane w firebase
   const handleData = (messages) => {
     setMessages(messages);
-  }
-
-  const handleAuthorChange = (event) => {
-    setAuthorValue(event.target.value)
   }
 
   const handleMessageChange = (event) => {
@@ -50,14 +47,14 @@ const Dashboard = () => {
     }
 
     const newMessage = {
-      author: authorValue,
+      author: state.user.displayName,
+      photo: state.user.photoURL,
       message: messageValue
     }
 
     setMessages([...messages, newMessage])
     saveMessage(newMessage);
 
-    setAuthorValue('');
     setMessageValue('');
   }
 
@@ -67,8 +64,6 @@ const Dashboard = () => {
         <Title text="Dashboard" />
         <MessageForm
           handleSubmit={handleSubmit}
-          authorValue={authorValue}
-          handleAuthorChange={handleAuthorChange}
           messageValue={messageValue}
           handleMessageChange={handleMessageChange}
           isMessageError={isMessageError}

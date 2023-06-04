@@ -7,14 +7,15 @@ import InputField from "../InputField/InputField"
 const MessageForm = (props) => {
   const state = useContext(GlobalContext);
 
-  console.log(state.user);
-
   return (
     <form onSubmit={props.handleSubmit}>
+      <img
+        src={state.user.photoURL}
+        alt=""
+      />
       <InputField
         label="Author"
-        value={props.authorValue}
-        handleChange={props.handleAuthorChange}
+        value={state.user.displayName}
       />
       <InputField
         label="Message"

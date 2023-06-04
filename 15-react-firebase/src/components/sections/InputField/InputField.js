@@ -17,4 +17,8 @@ const InputField = (props) => {
   )
 }
 
+InputField.defaultProps = {
+  handleChange: () => null
+}
+
 export default InputField
