@@ -1,4 +1,10 @@
-import { Link } from "react-router-dom"
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom"
+
+import { GlobalContext } from "../../../contexts/global";
+
+import { logout } from "../../../services/firebase";
+import Button from "../../atoms/Button/Button"
 
 import styles from './Header.module.css'
 
@@ -9,6 +15,17 @@ import styles from './Header.module.css'
 
 
 const Header = () => {
+  const navigate = useNavigate();
+  const state = useContext(GlobalContext)
+  console.log(state.user);
+
+  const handleLogout = () => {
+    logout()
+      .then(() => {
+        navigate('/')
+      })
+  }
+
   return (
     <header className={styles.header}>
       Messages App
@@ -22,6 +39,9 @@ const Header = () => {
           </li>
           <li>
             <Link to="/register">Register</Link>
+          </li>
+          <li>
+            <Button text="Wyloguj" onClick={handleLogout}/>
           </li>
         </ul>
       </nav>

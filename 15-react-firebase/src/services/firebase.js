@@ -1,6 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, onValue } from "firebase/database";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -41,4 +47,15 @@ export const login = (email, password) => {
 
 export const register = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password)
+}
+
+// funkcja typu callback
+export const getUser = (fn) => {
+  onAuthStateChanged(auth, user => {
+    fn(user);
+  })
+}
+
+export const logout = () => {
+  return signOut(auth);
 }

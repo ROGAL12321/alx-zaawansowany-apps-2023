@@ -1,7 +1,14 @@
+import { useContext } from "react"
+
+import { GlobalContext } from "../../../contexts/global"
 import Button from "../../atoms/Button/Button"
 import InputField from "../InputField/InputField"
 
 const MessageForm = (props) => {
+  const state = useContext(GlobalContext);
+
+  console.log(state.user);
+
   return (
     <form onSubmit={props.handleSubmit}>
       <InputField
