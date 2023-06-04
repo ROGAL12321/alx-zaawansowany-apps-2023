@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, onValue } from "firebase/database";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -15,6 +16,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const auth = getAuth(app);
 
 export const getMessages = (fn) => {
   const messagesRef = ref(database, 'messages');
@@ -31,4 +33,12 @@ export const getMessages = (fn) => {
 export const saveMessage = newMessage => {
   const messagesRef = ref(database, 'messages');
   push(messagesRef, newMessage)
+}
+
+export const login = (email, password) => {
+  return signInWithEmailAndPassword(auth, email, password)
+}
+
+export const register = (email, password) => {
+  return createUserWithEmailAndPassword(auth, email, password)
 }

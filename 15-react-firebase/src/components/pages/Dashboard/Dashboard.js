@@ -3,6 +3,7 @@ import { getMessages, saveMessage } from '../../../services/firebase'
 import Title from '../../atoms/Title/Title';
 import MessageForm from '../../sections/MessageForm/MessageForm';
 import MessageList from '../../sections/MessageList/MessageList';
+import Main from '../../templates/Main/Main';
 import styles from './Dashboard.module.css';
 
 // Rozbij aplikacje na komponenty:
@@ -61,18 +62,20 @@ const Dashboard = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <Title text="Dashboard" />
-      <MessageForm
-        handleSubmit={handleSubmit}
-        authorValue={authorValue}
-        handleAuthorChange={handleAuthorChange}
-        messageValue={messageValue}
-        handleMessageChange={handleMessageChange}
-        isMessageError={isMessageError}
-      />
-      <MessageList messages={messages} />
-    </div>
+    <Main>
+      <div className={styles.container}>
+        <Title text="Dashboard" />
+        <MessageForm
+          handleSubmit={handleSubmit}
+          authorValue={authorValue}
+          handleAuthorChange={handleAuthorChange}
+          messageValue={messageValue}
+          handleMessageChange={handleMessageChange}
+          isMessageError={isMessageError}
+        />
+        <MessageList messages={messages} />
+      </div>
+    </Main>
   )
 }
 

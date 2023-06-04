@@ -11,6 +11,7 @@ import {
 
 import './styles/reset.css'
 import './styles/main.css'
+import Register from './components/pages/Register/Register';
 
 // Stworz komponent Dashboard, który będzie realizował następujace załozenia:
 
@@ -28,6 +29,10 @@ const config = createBrowserRouter([
   {
     path: '/dashboard',
     element: <Dashboard />
+  },
+  {
+    path: '/register',
+    element: <Register />
   }
 ])
 
